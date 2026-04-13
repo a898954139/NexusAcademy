@@ -31,17 +31,7 @@ const Header = () => {
         setIsMobileMenuOpen(false)
     }
 
-    const nextLanguage = {
-        'en': 'zh-cn',
-        'zh-cn': 'zh-tw',
-        'zh-tw': 'en'
-    };
-    
-    const langLabels = {
-        'en': 'EN',
-        'zh-cn': '简',
-        'zh-tw': '繁'
-    };
+
 
     return (
         <header className={`header ${isScrolled ? 'header-scrolled' : ''}`}>
@@ -69,13 +59,19 @@ const Header = () => {
                     </div>
 
                     <div className="nav-actions">
-                        <button
-                            className="language-toggle"
-                            onClick={() => setLanguage(nextLanguage[language] || 'en')}
-                            aria-label="Toggle language"
-                        >
-                            {langLabels[language] || 'EN'}
-                        </button>
+                        <div className="lang-dropdown-wrapper">
+                            <select
+                                className="language-select"
+                                value={language}
+                                onChange={(e) => setLanguage(e.target.value)}
+                                aria-label="Select language"
+                            >
+                                <option value="en">EN</option>
+                                <option value="zh-cn">简体中文</option>
+                                <option value="zh-tw">繁體中文</option>
+                            </select>
+                            <span className="lang-arrow">▾</span>
+                        </div>
 
                         <Link to="/contact" className="btn btn-primary btn-sm" onClick={closeMobileMenu}>
                             {t({ en: 'Start Journey', 'zh-cn': '开始旅程', 'zh-tw': '開始旅程' })}
