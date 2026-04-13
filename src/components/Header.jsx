@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useLanguage } from '../context/useLanguage'
 import './Header.css'
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-    const [language, setLanguage] = useState('EN')
+    const { language, setLanguage, t } = useLanguage()
     const location = useLocation()
 
     useEffect(() => {
@@ -17,18 +18,30 @@ const Header = () => {
     }, [])
 
     const navLinks = [
-        { path: '/', label: 'Home', labelCN: '首页' },
-        { path: '/about', label: 'About', labelCN: '关于我们' },
-        { path: '/courses', label: 'Courses', labelCN: '课程' },
-        { path: '/signals', label: 'Signals', labelCN: '信号' },
-        { path: '/community', label: 'Community', labelCN: '社区' },
-        { path: '/blog', label: 'Resources', labelCN: '资源' },
-        { path: '/contact', label: 'Contact', labelCN: '联系' }
+        { path: '/', label: { en: 'Home', 'zh-cn': '首页', 'zh-tw': '首頁' } },
+        { path: '/about', label: { en: 'About', 'zh-cn': '关于我们', 'zh-tw': '關於我們' } },
+        { path: '/courses', label: { en: 'Courses', 'zh-cn': '课程', 'zh-tw': '課程' } },
+        { path: '/signals', label: { en: 'Signals', 'zh-cn': '信号', 'zh-tw': '信號' } },
+        { path: '/community', label: { en: 'Community', 'zh-cn': '社区', 'zh-tw': '社區' } },
+        { path: '/blog', label: { en: 'Resources', 'zh-cn': '资源', 'zh-tw': '資源' } },
+        { path: '/contact', label: { en: 'Contact', 'zh-cn': '联系', 'zh-tw': '聯繫' } }
     ]
 
     const closeMobileMenu = () => {
         setIsMobileMenuOpen(false)
     }
+
+    const nextLanguage = {
+        'en': 'zh-cn',
+        'zh-cn': 'zh-tw',
+        'zh-tw': 'en'
+    };
+    
+    const langLabels = {
+        'en': 'EN',
+        'zh-cn': '简',
+        'zh-tw': '繁'
+    };
 
     return (
         <header className={`header ${isScrolled ? 'header-scrolled' : ''}`}>
@@ -50,7 +63,7 @@ const Header = () => {
                                 className={`nav-link ${location.pathname === link.path ? 'nav-link-active' : ''}`}
                                 onClick={closeMobileMenu}
                             >
-                                {language === 'EN' ? link.label : link.labelCN}
+                                {t(link.label)}
                             </Link>
                         ))}
                     </div>
@@ -58,14 +71,14 @@ const Header = () => {
                     <div className="nav-actions">
                         <button
                             className="language-toggle"
-                            onClick={() => setLanguage(language === 'EN' ? 'CN' : 'EN')}
+                            onClick={() => setLanguage(nextLanguage[language] || 'en')}
                             aria-label="Toggle language"
                         >
-                            {language === 'EN' ? '中文' : 'EN'}
+                            {langLabels[language] || 'EN'}
                         </button>
 
                         <Link to="/contact" className="btn btn-primary btn-sm" onClick={closeMobileMenu}>
-                            {language === 'EN' ? 'Start Journey' : '开始旅程'}
+                            {t({ en: 'Start Journey', 'zh-cn': '开始旅程', 'zh-tw': '開始旅程' })}
                         </Link>
 
                         <button

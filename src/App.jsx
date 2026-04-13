@@ -9,12 +9,14 @@ import SignalsPage from './pages/SignalsPage'
 import CommunityPage from './pages/CommunityPage'
 import BlogPage from './pages/BlogPage'
 import ContactPage from './pages/ContactPage'
+import { LanguageProvider } from './context/LanguageContext'
 
 function App() {
   return (
-    <HashRouter>
-      <div className="app">
-        <Header />
+    <LanguageProvider>
+      <HashRouter>
+        <div className="app">
+          <Header />
         <main>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -29,6 +31,7 @@ function App() {
         <Footer />
       </div>
     </HashRouter>
+    </LanguageProvider>
   )
 }
 
