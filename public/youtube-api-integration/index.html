@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="How Nexus Media Automation uses the YouTube Data API to publish approved, original Nexus educational videos." />
+    <title>YouTube API Integration | Nexus</title>
+    <link rel="stylesheet" href="/compliance.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="shell nav">
+        <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>NEXUS</a>
+        <nav class="nav-links" aria-label="Compliance navigation">
+          <a href="/youtube-api-integration/" aria-current="page">API Integration</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="shell hero">
+        <p class="eyebrow">Nexus Media Automation</p>
+        <h1>YouTube Data API integration</h1>
+        <p class="lede">An internal, owner-operated publishing workflow for original Nexus trading-education videos and YouTube Shorts.</p>
+        <div class="youtube-badge">
+          <img src="https://www.gstatic.com/youtube/img/branding/youtubelogo/svg/youtubelogo.svg" alt="YouTube" />
+        </div>
+        <div class="meta">
+          <span>Operator: Chan Wei Feng</span>
+          <span>Channel: Ryan | Nexus</span>
+          <span>Updated: 27 July 2026</span>
+        </div>
+      </section>
+
+      <section class="shell content">
+        <div class="summary-grid">
+          <article class="card">
+            <strong>Internal access only</strong>
+            <p>The client is not offered to the public and has no public registration or demo account.</p>
+          </article>
+          <article class="card">
+            <strong>Original content only</strong>
+            <p>It uploads media created or commissioned by Nexus for a channel controlled by the operator.</p>
+          </article>
+          <article class="card">
+            <strong>Approval before publishing</strong>
+            <p>Assets, titles and descriptions pass through the Nexus approval workflow before upload.</p>
+          </article>
+        </div>
+
+        <article class="section">
+          <p class="label">Purpose</p>
+          <h2>What the API client does</h2>
+          <p>Nexus Media Automation prepares and delivers approved educational videos to the owned <strong>Ryan | Nexus</strong> YouTube channel. The client applies the approved title, description, educational disclaimer and privacy setting, uploads the media, and reads the resulting YouTube record back to verify delivery.</p>
+          <p>The tool does not search for, download, copy, re-host or monetise third-party YouTube content. It does not provide public YouTube browsing, analytics or account-management services.</p>
+        </article>
+
+        <article class="section">
+          <p class="label">Workflow</p>
+          <h2>Controlled publishing flow</h2>
+          <div class="flow-grid">
+            <div class="card"><strong>1. Approval</strong><p>Ryan approves the final media package and publishing metadata.</p></div>
+            <div class="card"><strong>2. OAuth upload</strong><p>The authorised owner account uploads the approved asset through the API.</p></div>
+            <div class="card"><strong>3. Readback</strong><p>The workflow verifies the channel identity and delivered video metadata.</p></div>
+          </div>
+          <p class="notice">Publishing fails closed when approval, asset validation, channel identity or API readback checks do not pass.</p>
+        </article>
+
+        <article class="section">
+          <p class="label">Methods</p>
+          <h2>YouTube Data API methods</h2>
+          <ul>
+            <li><span class="endpoint">youtube.channels.list</span> verifies the authorised channel identity.</li>
+            <li><span class="endpoint">youtube.videos.insert</span> uploads approved original videos and their metadata.</li>
+            <li><span class="endpoint">youtube.videos.list</span> verifies processing state, visibility and delivery metadata.</li>
+          </ul>
+          <p>OAuth access is restricted to the channel owner. Credentials are stored locally and are never included in public evidence, source control or approval messages.</p>
+        </article>
+
+        <article class="section">
+          <p class="label">Controls</p>
+          <h2>Privacy, revocation and deletion</h2>
+          <p>Google authorisation can be revoked from the operator's <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener">Google Account connections</a>. A verified deletion request may also be sent to <a href="mailto:mynexustrading@gmail.com">mynexustrading@gmail.com</a>.</p>
+          <p>Read the complete <a href="/privacy/">Privacy Policy</a> and <a href="/terms/">Terms of Use</a>.</p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-row">
+        <span>© 2026 Nexus. Institutional thinking for independent traders.</span>
+        <span class="footer-links"><a href="/">Home</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></span>
+      </div>
+    </footer>
+  </body>
+</html>
